@@ -1,0 +1,34 @@
+source("00_utils.R") 
+load("results/mortality_analysis_mitt.Rdata")
+
+#model (Aging mouse, Obesity mouse, Young healthy mouse, SHR)
+footnote <- glue("p value of interaction effect =                     
+{pvalue(pvalue_interaction$model, prefix = c('<', '',''))}")
+
+tab <- tables$cox$model
+gt(tab) |>
+  tab_footnote(footnote = footnote) 
+
+#Sex_mouse
+footnote <- glue("p value of interaction effect =               
+{pvalue(pvalue_interaction$sex$allmodels, prefix = c('<', '',''))}")
+
+tab <- tables$cox$sex$allmodels
+gt(tab) |>
+  tab_footnote(footnote = footnote) 
+
+#Sex_SHR
+footnote <- glue("p value of interaction effect =                
+{pvalue(pvalue_interaction$sex$shr, prefix = c('<', '',''))}")
+
+tab <- tables$cox$sex$shr
+gt(tab) |>
+  tab_footnote(footnote = footnote) 
+
+#Circadian_mouse
+footnote <- glue("p value of interaction effect =          
+{pvalue(pvalue_interaction$cs$allmodels, prefix = c('<', '',''))}")
+
+tab <- tables$cox$cs$allmodels
+gt(tab) |>
+  tab_footnote(footnote = footnote) 
