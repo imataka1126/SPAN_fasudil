@@ -1,0 +1,457 @@
+#Descriptive Analysis
+source("00_utils.R") 
+load("results/corner_test_descriptive_analysis_pp.Rdata")
+
+#Mouse
+gt(tables$overall$corner) %>%
+  tab_header(
+    title = "Descriptive Analysis - Corner test index"
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = c(Variable),
+      rows = !str_detect(Variable, "\t"))
+  )
+
+#SHR
+gt(tables$model$shr$corner) %>%
+  tab_header(
+    title = "Descriptive Analysis - Corner test by Treatment Group, For each animal model (SHR)"
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = c(Variable),
+      rows = !str_detect(Variable, "\t"))
+  )
+
+#Day 7 Alternative Corner Test Index
+source("00_utils.R") #F:/User Folders/Seungjun/Mount Sinai/SPAN/Iowa/
+load("results/d7_alternative_corner_test_pim_pp.Rdata") #F:/User Folders/Seungjun/Mount Sinai/SPAN/Iowa/results/
+
+#model (Aging mouse, Obesity mouse, Young healthy mouse, SHR)
+#No missing data imputation
+tab <- tables$model$noimputation$stratified |> 
+  format_pi_table()
+
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Worst Rank Score
+tab <- tables$model$ws_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Multiple Imputation
+tab <- tables$model$mi_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Sex_Mouse
+#No missing data imputation
+tab <- tables$sex$allmodels$noimputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Worst Rank Score
+tab <- tables$sex$allmodels$ws_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Multiple Imputation
+tab <- tables$sex$allmodels$mi_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Sex_SHR
+#No missing data imputation
+tab <- tables$sex$shr$noimputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model_sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Worst Rank Score
+tab <- tables$sex$shr$ws_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model_sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Multiple Imputation
+tab <- tables$sex$shr$mi_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model_sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Circadian_mouse
+#No missing data imputation
+tab <- tables$cs$allmodels$noimputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$cs$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Worst Rank Score
+tab <- tables$cs$allmodels$ws_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$cs$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Multiple Imputation
+tab <- tables$cs$allmodels$mi_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$cs$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Day 30 Alternative Corner Test Index
+source("00_utils.R") #F:/User Folders/Seungjun/Mount Sinai/SPAN/Iowa/
+load("results/d30_alternative_corner_test_pim_pp.Rdata") #F:/User Folders/Seungjun/Mount Sinai/SPAN/Iowa/results/
+
+#model (Aging mouse, Obesity mouse, Young healthy mouse, SHR)
+#No missing data imputation
+tab <- tables$model$noimputation$stratified |> 
+  format_pi_table()
+
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Worst Rank Score
+tab <- tables$model$ws_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Multiple Imputation
+tab <- tables$model$mi_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Sex_Mouse
+#No missing data imputation
+tab <- tables$sex$allmodels$noimputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Worst Rank Score
+tab <- tables$sex$allmodels$ws_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Multiple Imputation
+tab <- tables$sex$allmodels$mi_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Sex_SHR
+#No missing data imputation
+tab <- tables$sex$shr$noimputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model_sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Worst Rank Score
+tab <- tables$sex$shr$ws_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model_sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Multiple Imputation
+tab <- tables$sex$shr$mi_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$model_sex$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Circadian_mouse
+#No missing data imputation
+tab <- tables$cs$allmodels$noimputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$cs$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Worst Rank Score
+tab <- tables$cs$allmodels$ws_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$cs$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
+
+#Missing data imputation - Multiple Imputation
+tab <- tables$cs$allmodels$mi_imputation$stratified |> 
+  format_pi_table()
+
+gt(tab) %>%
+  tab_header(
+    title = "Relative Effect - Probabilistic Index Model - Stratified analysis"
+  ) %>%
+  tab_footnote(
+    footnote = footnote$cs$stratified$corner,
+    locations = cells_column_labels(columns = "95% CI")
+  ) %>%
+  tab_footnote(
+    footnote = "No adjustment for multiplicity.",
+    locations = cells_column_labels(columns = "p value")
+  )
