@@ -1,0 +1,90 @@
+source("00_utils.R") 
+load("results/feasibility_descriptive_analysis.Rdata")
+
+#Mouse mITT
+tab <- tables$mitt$treatment$mice 
+colnames(tab) <- str_remove(colnames(tab), "Study Arm:")
+
+gt(tab) %>%
+  tab_header(
+    title = "Descriptive Analysis - mITT Population - Mice",
+    subtitle = "By Study Arm"
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = c(Variable),
+      rows = !str_detect(Variable, "\t"))
+  ) |>
+  tab_spanner(
+    label = "Study Arm",
+    columns = 2:ncol(tab)
+  )
+
+#Mouse PP
+tab <- tables$pp$treatment$mice 
+colnames(tab) <- str_remove(colnames(tab), "Study Arm:")
+
+gt(tab) %>%
+  tab_header(
+    title = "Descriptive Analysis - Per protocol Population - Mice",
+    subtitle = "By Study Arm"
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = c(Variable),
+      rows = !str_detect(Variable, "\t"))
+  ) |>
+  tab_spanner(
+    label = "Study Arm",
+    columns = 2:ncol(tab)
+  )
+
+#SHR mITT
+tab <- tables$mitt$treatment$rats 
+colnames(tab) <- str_remove(colnames(tab), "Study Arm:")
+
+gt(tab) %>%
+  tab_header(
+    title = "Descriptive Analysis - mITT Population - Rats",
+    subtitle = "By Study Arm"
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = c(Variable),
+      rows = !str_detect(Variable, "\t"))
+  ) |>
+  tab_spanner(
+    label = "Study Arm",
+    columns = 2:ncol(tab)
+  )
+
+#SHR PP
+tab <- tables$pp$treatment$rats 
+colnames(tab) <- str_remove(colnames(tab), "Study Arm:")
+
+gt(tab) %>%
+  tab_header(
+    title = "Descriptive Analysis - Per protocol Population - Rats",
+    subtitle = "By Study Arm"
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = c(Variable),
+      rows = !str_detect(Variable, "\t"))
+  ) |>
+  tab_spanner(
+    label = "Study Arm",
+    columns = 2:ncol(tab)
+  )
