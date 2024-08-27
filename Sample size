@@ -1,0 +1,31 @@
+source("00_utils.R") 
+load("data/s1234_feasibility_data.Rdata")
+
+# Sample sizes ----
+
+n <- c(nrow(dt_feasibility$enrolled), 
+       nrow(dt_feasibility$ineligible_for_randomization),
+       nrow(dt_feasibility$itt),
+       nrow(dt_feasibility$exclusion_from_treatment),
+       nrow(dt_feasibility$procedural_dropout),
+       nrow(dt_feasibility$mitt),
+       nrow(dt_feasibility$partial_treatment),
+       nrow(dt_feasibility$wrong_treatment),
+       nrow(dt_feasibility$pp),
+       nrow(dt_feasibility$loss_followup))
+population <- c("Enrolled", 
+                "Ineligible for Randomization",
+                "ITT",
+                "Exclusion from treatment",
+                "Procedural Dropout",
+                "mITT", 
+                "Partial Treatment",
+                "Wrong Treatment",
+                "Per protocol",
+                "Loss to Follow-up")
+
+tab <- data.frame(Population = population,
+                                 'Sample Size' = n)
+
+
+gt(tab)
